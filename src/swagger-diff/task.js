@@ -11,25 +11,23 @@ var rightType = task.getInput('rightType', true);
 var leftPath = "",
   rightPath = "";
 
-if (leftType == "file") {
+if (leftType === "file") {
   leftPath = task.getPathInput('leftFilePath', true, true);
 } else {
   leftPath = task.getInput('leftUrl', true);
 }
 
-if (rightType == "file") {
+if (rightType === "file") {
   rightPath = task.getPathInput('rightFilePath', true, true);
 } else {
   rightPath = task.getInput('rightUrl', true);
 }
 
-// console.log(helloTask.greet());
-
 var config = null;
 
 var extConfig = task.getInput('config', false);
 
-if (extConfig != null && extConfig != "") {
+if (extConfig && extConfig !== "") {
   config = JSON.parse(extConfig);
 } else {
   config = {
