@@ -1,0 +1,29 @@
+{
+  "name": "vsts-swagger-diff",
+  "version": "0.0.1",
+  "description": "A build/release task for comparing Swagger Contracts.",
+  "homepage": "",
+  "author": {
+    "name": "knom"
+  },
+  "files": [],
+  "main": "",
+  "keywords": [],
+  "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "del": "^2.2.0",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-react": "^7.5.1",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-util": "^3.0.7",
+    "shelljs": "^0.7.0"
+  },
+  "dependencies": {
+    "swagger-diff": "^0.6.0",
+    "vsts-task-lib": "^0.8.2"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "vsts-swagger-diff",
+  "version": "0.0.1",
+  "description": "A build/release task for comparing Swagger Contracts.",
+  "homepage": "",
+  "author": {
+    "name": "knom"
+  },
+  "files": [],
+  "main": "",
+  "keywords": [],
+  "dependencies": {
+    "swagger-diff": "^0.6.0",
+    "vsts-task-lib": "^0.8.2"
+  }
+}
