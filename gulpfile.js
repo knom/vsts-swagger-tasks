@@ -75,7 +75,7 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('lint', ['clean'], function () {
-  return gulp.src('**/*.js')
+  return gulp.src('src/swagger-diff/task.js')
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
