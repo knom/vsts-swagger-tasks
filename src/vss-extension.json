@@ -63,11 +63,6 @@
     },
     {
       "path": "swagger-diff"
-    },
-    {
-      "path": "node_modules",
-      "addressable": true,
-      "packagePath": "lib"
     }
   ],
   "targets": [{
