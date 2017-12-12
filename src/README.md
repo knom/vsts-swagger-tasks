@@ -9,7 +9,7 @@ It will output any **differences** as **info, warning, errors** depending on the
 
 You can use the task for making sure a certain Swagger contract still is in compliance with a specification.
 
-**If an ERROR occurs, the task will per default STOPP the build or release pipeline. Hence it can act as a quality gate for e.g. a release**
+**If an ERROR occurs, the task will per default STOP the build or release pipeline. Hence it can act as a quality gate for e.g. a release**
 
 > Note: The task is using https://www.npmjs.com/package/swagger-diff - the Swagger-Diff tool by Nicolas Fortin (zallek).
 
@@ -30,7 +30,7 @@ Examples:
 * Delete path
 * Rename path operationId
 * Delete/Rename parametters
-* Add a constraint on a parametter (like isRequired)
+* Add a constraint on a parameter (like isRequired)
 * Modify a response item
 
 
