@@ -92,7 +92,7 @@ gulp.task('pre-test', ['build'], function () {
     .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['mocha-test', 'pester-test']);
+gulp.task('test', ['mocha-test']);
 
 gulp.task('mocha-test', ['pre-test'], function (done) {
   var mochaErr;
@@ -109,22 +109,22 @@ gulp.task('mocha-test', ['pre-test'], function (done) {
     });
 });
 
-gulp.task('pester-test', ['pre-test'], function (done) {
-  // Runs powershell unit tests based on pester
-  var pester = spawn('powershell.exe', ['-Command', 'Invoke-Pester -EnableExit -Path test'], {stdio: 'inherit'});
-  pester.on('exit', function (code) {
-    if (code === 0) {
-      done();
-    } else {
-      done('Pester tests failed!');
-    }
-  });
+// gulp.task('pester-test', ['pre-test'], function (done) {
+//   // Runs powershell unit tests based on pester
+//   var pester = spawn('powershell.exe', ['-Command', 'Invoke-Pester -EnableExit -Path test'], {stdio: 'inherit'});
+//   pester.on('exit', function (code) {
+//     if (code === 0) {
+//       done();
+//     } else {
+//       done('Pester tests failed!');
+//     }
+//   });
 
-  pester.on('error', function () {
-    // We may be in a non-windows machine or powershell.exe is not in path. Skip pester tests.
-    done();
-  });
-});
+//   pester.on('error', function () {
+//     // We may be in a non-windows machine or powershell.exe is not in path. Skip pester tests.
+//     done();
+//   });
+// });
 
 gulp.task('default', ['test']);
 
