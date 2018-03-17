@@ -132,7 +132,7 @@ gulp.task('package', ['test'], function (done) {
   getNodeDependencies(function () {
     // TODO We need a per task dependency copy
     copyNodeModulesToTasks(function () {
-      createVsixPackage(done);
+      done();
     });
   });
 });
