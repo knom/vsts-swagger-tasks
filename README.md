@@ -1,4 +1,5 @@
-# Swagger Contract Diff
+# Swagger Contract Diff ![Build Status](https://knom-msft.visualstudio.com/_apis/public/build/definitions/9d8fcb7c-6c11-4014-9dc2-7966c94af2b2/7/badge)
+
 A build/release task for comparing Swagger Contracts.
 
 Pass in URLs or Paths of Swagger 2.0 Contracts.
