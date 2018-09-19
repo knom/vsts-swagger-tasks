@@ -22,6 +22,7 @@
     "shelljs": "^0.7.0"
   },
   "dependencies": {
+    "lodash": "^4.17.5",
     "swagger-diff": "^0.6.0",
     "vsts-task-lib": "^0.8.2"
   }
