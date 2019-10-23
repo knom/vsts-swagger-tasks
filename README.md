@@ -1,4 +1,4 @@
-# Swagger Contract Diff ![Build Status](https://knom-msft.visualstudio.com/_apis/public/build/definitions/9d8fcb7c-6c11-4014-9dc2-7966c94af2b2/7/badge) 
+# Swagger Contract Diff [![Version](https://img.shields.io/vscode-marketplace/v/knom.vsts-swagger-diff.svg?label=VS%20Marketplace&logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=knom.vsts-swagger-diff) [![Visual Studio Marketplace Downloads](https://img.shields.io/vscode-marketplace/d/knom.vsts-swagger-diff.svg?logo=visual-studio-code&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=knom.vsts-swagger-diff) [![GitHub License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/knom/vsts-swagger-tasks/blob/master/LICENSE) ![Build Status](https://knom-msft.visualstudio.com/_apis/public/build/definitions/9d8fcb7c-6c11-4014-9dc2-7966c94af2b2/7/badge)
 
 A build/release task for comparing Swagger Contracts.
 

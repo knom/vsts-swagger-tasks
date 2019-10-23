@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "extensionId": "vsts-swagger-diff",
   "name": "Swagger Contract Diff",
-  "version": "0.0.12",
+  "version": "1.2.2",
   "publisher": "knom",
   "description": "A build/release task for comparing Swagger Contracts.",
   "public": true,
