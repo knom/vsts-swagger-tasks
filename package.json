@@ -22,8 +22,8 @@
     "shelljs": "^0.7.0"
   },
   "dependencies": {
-    "growl": "^1.10.0",
-    "lodash": "^4.17.5",
+    "growl": "^1.10.5",
+    "lodash": "^4.17.15",
     "swagger-diff": "^0.6.0",
     "vsts-task-lib": "^0.8.2"
   }
