@@ -35,7 +35,7 @@ var executeCommand = function (cmd, dir, done) {
     gutil.log(' Working directory: ' + dir);
     shell.cd(dir);
   }
-  shell.exec(cmd, {silent: true}, function (code, stdout, stderr) {
+  shell.exec(cmd, { silent: true }, function (code, stdout, stderr) {
     gutil.log(' stdout: ' + stdout);
     if (code !== 0) {
       gutil.log('Command failed: ' + cmd + '\nManually execute to debug');
@@ -74,32 +74,30 @@ gulp.task('clean', function (done) {
   });
 });
 
-gulp.task('lint', ['clean'], function () {
+gulp.task('lint', gulp.series('clean'), function () {
   return gulp.src('src/swagger-diff/task.js')
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('build', ['lint'], function () {
-  return gulp.src('src/**/*', {base: '.'})
+gulp.task('build', gulp.series('lint'), function () {
+  return gulp.src('src/**/*', { base: '.' })
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('pre-test', ['build'], function () {
+gulp.task('pre-test', gulp.series('clean', 'build'), function () {
   return gulp.src('src/**/*.js')
-    .pipe(istanbul({includeUntested: true}))
+    .pipe(istanbul({ includeUntested: true }))
     .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['mocha-test']);
-
-gulp.task('mocha-test', ['pre-test'], function (done) {
+gulp.task('mocha-test', gulp.series(['pre-test']), function (done) {
   var mochaErr;
 
   gulp.src('test/**/*.js')
     .pipe(plumber())
-    .pipe(mocha({reporter: 'spec'}))
+    .pipe(mocha({ reporter: 'spec' }))
     .on('error', function (err) {
       mochaErr = err;
     })
@@ -108,6 +106,8 @@ gulp.task('mocha-test', ['pre-test'], function (done) {
       done(mochaErr);
     });
 });
+
+gulp.task('test', gulp.series(['mocha-test']));
 
 // gulp.task('pester-test', ['pre-test'], function (done) {
 //   // Runs powershell unit tests based on pester
@@ -126,9 +126,9 @@ gulp.task('mocha-test', ['pre-test'], function (done) {
 //   });
 // });
 
-gulp.task('default', ['test']);
+gulp.task('default', gulp.series(['test']));
 
-gulp.task('package', ['test'], function (done) {
+gulp.task('package', gulp.series(['test']), function (done) {
   getNodeDependencies(function () {
     // TODO We need a per task dependency copy
     copyNodeModulesToTasks(function () {
