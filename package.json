@@ -25,6 +25,7 @@
     "@types/lodash": "^4.14.144",
     "growl": "^1.10.5",
     "lodash": "^4.17.15",
+    "openapi-diff": "^0.23.4",
     "swagger-diff": "^0.6.0",
     "vsts-task-lib": "^0.8.2"
   }

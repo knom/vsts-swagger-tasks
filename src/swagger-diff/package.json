@@ -10,6 +10,7 @@
   "main": "",
   "keywords": [],
   "dependencies": {
+    "node-fetch": "^2.6.1",
     "swagger-diff": "^0.6.0",
     "vsts-task-lib": "^0.8.2"
   }
