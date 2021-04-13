@@ -1,24 +1,24 @@
-'use strict';
+"use strict";
 
-var fs = require('fs');
-var path = require('path');
-var del = require('del');
-var eslint = require('gulp-eslint');
-var gulp = require('gulp');
-var istanbul = require('gulp-istanbul');
-var mocha = require('gulp-mocha');
-var plumber = require('gulp-plumber');
-var shell = require('shelljs');
-var spawn = require('child_process').spawn;
-var gutil = require('gulp-util');
+var fs = require("fs");
+var path = require("path");
+var del = require("del");
+var eslint = require("gulp-eslint");
+var gulp = require("gulp");
+var istanbul = require("gulp-istanbul");
+var mocha = require("gulp-mocha");
+var plumber = require("gulp-plumber");
+var shell = require("shelljs");
+var spawn = require("child_process").spawn;
+var gutil = require("gulp-util");
 
 var copyNodeModulesToTasks = function (done) {
-  fs.readdirSync('src').forEach(function (file) {
-    var filePath = path.join('dist', 'src', file);
+  fs.readdirSync("src").forEach(function (file) {
+    var filePath = path.join("dist", "src", file);
     if (fs.statSync(filePath).isDirectory()) {
       try {
-        if (fs.statSync(path.join(filePath, 'task.json')).isFile()) {
-          shell.cp('-rf', 'dist/node_modules', filePath);
+        if (fs.statSync(path.join(filePath, "task.json")).isFile()) {
+          shell.cp("-rf", "dist/node_modules", filePath);
         }
       } catch (e) {
         /* swallow error: not a task directory */
@@ -29,17 +29,17 @@ var copyNodeModulesToTasks = function (done) {
 };
 
 var executeCommand = function (cmd, dir, done) {
-  gutil.log('Running command: ' + cmd);
+  gutil.log("Running command: " + cmd);
   var pwd = shell.pwd();
   if (undefined !== dir) {
-    gutil.log(' Working directory: ' + dir);
+    gutil.log(" Working directory: " + dir);
     shell.cd(dir);
   }
   shell.exec(cmd, { silent: true }, function (code, stdout, stderr) {
-    gutil.log(' stdout: ' + stdout);
+    gutil.log(" stdout: " + stdout);
     if (code !== 0) {
-      gutil.log('Command failed: ' + cmd + '\nManually execute to debug');
-      gutil.log(' stderr: ' + stderr);
+      gutil.log("Command failed: " + cmd + "\nManually execute to debug");
+      gutil.log(" stderr: " + stderr);
     }
     shell.cd(pwd);
     done();
@@ -47,67 +47,81 @@ var executeCommand = function (cmd, dir, done) {
 };
 
 var createVsixPackage = function (done) {
-  if (!shell.which('tfx')) {
-    gutil.log('Packaging requires tfx cli. Please install with `npm install tfx-cli -g`.');
+  if (!shell.which("tfx")) {
+    gutil.log(
+      "Packaging requires tfx cli. Please install with `npm install tfx-cli -g`."
+    );
     done();
     return;
   }
-  var packagingCmd = 'tfx extension create --manifest-globs vss-extension.json --root dist/src --output-path dist';
+  var packagingCmd =
+    "tfx extension create --manifest-globs vss-extension.json --root dist/src --output-path dist";
   executeCommand(packagingCmd, shell.pwd(), done);
 };
 
 var getNodeDependencies = function (done) {
-  gutil.log('Copy package.json to dist directory');
-  shell.mkdir('-p', 'dist/node_modules');
-  shell.cp('-f', 'package.json', 'dist');
+  gutil.log("Copy package.json to dist directory");
+  shell.mkdir("-p", "dist/node_modules");
+  shell.cp("-f", "package.json", "dist");
 
-  gutil.log('Fetch node modules to package with tasks');
-  var npmPath = shell.which('npm');
+  gutil.log("Fetch node modules to package with tasks");
+  var npmPath = shell.which("npm");
   var npmInstallCommand = '"' + npmPath + '" install --production';
-  executeCommand(npmInstallCommand, 'dist', done);
+  executeCommand(npmInstallCommand, "dist", done);
 };
 
 // Tasks
-gulp.task('clean', function (done) {
-  del('dist').then(function () {
+gulp.task("clean", function (done) {
+  del("dist").then(function () {
     done();
   });
 });
 
-gulp.task('lint', gulp.series('clean'), function () {
-  return gulp.src('src/swagger-diff/task.js')
+gulp.task("lint", gulp.series("clean"), function () {
+  return gulp
+    .src("src/swagger-diff/task.js")
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('build', gulp.series('lint'), function () {
-  return gulp.src('src/**/*', { base: '.' })
-    .pipe(gulp.dest('dist'));
-});
+gulp.task(
+  "build",
+  gulp.series("lint", function () {
+    return gulp.src("src/**/*", { base: "." }).pipe(gulp.dest("dist"));
+  })
+);
 
-gulp.task('pre-test', gulp.series('clean', 'build'), function () {
-  return gulp.src('src/**/*.js')
-    .pipe(istanbul({ includeUntested: true }))
-    .pipe(istanbul.hookRequire());
-});
+gulp.task(
+  "pre-test",
+  gulp.series("clean", "build", function () {
+    return gulp
+      .src("src/**/*.js")
+      .pipe(istanbul({ includeUntested: true }))
+      .pipe(istanbul.hookRequire());
+  })
+);
 
-gulp.task('mocha-test', gulp.series(['pre-test']), function (done) {
-  var mochaErr;
+gulp.task(
+  "mocha-test",
+  gulp.series("pre-test", function (done) {
+    var mochaErr;
 
-  gulp.src('test/**/*.js')
-    .pipe(plumber())
-    .pipe(mocha({ reporter: 'spec' }))
-    .on('error', function (err) {
-      mochaErr = err;
-    })
-    .pipe(istanbul.writeReports())
-    .on('end', function () {
-      done(mochaErr);
-    });
-});
+    gulp
+      .src("test/**/*.js")
+      .pipe(plumber())
+      .pipe(mocha({ reporter: "spec" }))
+      .on("error", function (err) {
+        mochaErr = err;
+      })
+      .pipe(istanbul.writeReports())
+      .on("end", function () {
+        done(mochaErr);
+      });
+  })
+);
 
-gulp.task('test', gulp.series(['mocha-test']));
+gulp.task("test", gulp.series(["mocha-test"]));
 
 // gulp.task('pester-test', ['pre-test'], function (done) {
 //   // Runs powershell unit tests based on pester
@@ -126,13 +140,16 @@ gulp.task('test', gulp.series(['mocha-test']));
 //   });
 // });
 
-gulp.task('default', gulp.series(['test']));
+gulp.task("default", gulp.series("test"));
 
-gulp.task('package', gulp.series(['test']), function (done) {
-  getNodeDependencies(function () {
-    // TODO We need a per task dependency copy
-    copyNodeModulesToTasks(function () {
-      done();
+gulp.task(
+  "package",
+  gulp.series("test", function (done) {
+    getNodeDependencies(function () {
+      // TODO We need a per task dependency copy
+      copyNodeModulesToTasks(function () {
+        done();
+      });
     });
-  });
-});
+  })
+);
