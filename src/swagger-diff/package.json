@@ -14,6 +14,7 @@
     "growl": ">=1.10.5",
     "lodash": ">=4.17.21",
     "node-fetch": "^2.6.1",
+    "openapi-diff": "^0.23.4",
     "swagger-diff": "^0.6.0"
   }
 }

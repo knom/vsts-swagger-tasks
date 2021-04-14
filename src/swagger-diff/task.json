@@ -37,6 +37,18 @@
   ],
   "inputs": [
     {
+      "name": "swaggerVersion",
+      "type": "radio",
+      "label": "Swagger Version:",
+      "defaultValue": "v2",
+      "required": "true",
+      "helpMarkDown": "Which version of Swagger is being used",
+      "options": {
+        "v2": "Swagger v2",
+        "v3": "OpenAPI v3"
+      }
+    },
+    {
       "name": "leftType",
       "type": "radio",
       "label": "Left Document Type:",
