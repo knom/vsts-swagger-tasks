@@ -61,9 +61,7 @@ gulp.task("lint", function () {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task("build", gulp.series("lint"), function () {
-  return gulp.src("src/**/*", { base: "." }).pipe(gulp.dest("dist"));
-});
+gulp.task("build", gulp.series("lint"));
 
 gulp.task("pre-test", gulp.series("build"), function () {
   return gulp

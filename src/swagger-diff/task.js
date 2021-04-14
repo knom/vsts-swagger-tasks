@@ -1,6 +1,5 @@
 "use strict";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-const OpenApiDiff = require("openapi-diff");
 var util = require("util");
 // var fail = require("assert").fail;
 var task = require("vsts-task-lib/task");
