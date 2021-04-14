@@ -1,6 +1,8 @@
 # Created by https://www.gitignore.io/api/node
 
-dist/*
+package/*
+.taskkey
+
 ### Node ###
 # Logs
 logs

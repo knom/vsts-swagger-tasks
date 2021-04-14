@@ -15,21 +15,28 @@
     "Minor": 0,
     "Patch": 2
   },
-  "demands": ["npm"],
-  "groups": [{
-    "name": "left",
-    "displayName": "Left-Side Document",
-    "isExpanded": true
-  }, {
-    "name": "right",
-    "displayName": "Right-Side Document",
-    "isExpanded": true
-  }, {
-    "name": "advanced",
-    "displayName": "Advanced",
-    "isExpanded": false
-  }],
-  "inputs": [{
+  "demands": [
+    "npm"
+  ],
+  "groups": [
+    {
+      "name": "left",
+      "displayName": "Left-Side Document",
+      "isExpanded": true
+    },
+    {
+      "name": "right",
+      "displayName": "Right-Side Document",
+      "isExpanded": true
+    },
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
+  ],
+  "inputs": [
+    {
       "name": "leftType",
       "type": "radio",
       "label": "Left Document Type:",
@@ -107,7 +114,7 @@
   ],
   "instanceNameFormat": "Swagger Contract Diff $(name)",
   "execution": {
-    "Node": {
+    "Node10": {
       "target": "task.js",
       "argumentFormat": ""
     }

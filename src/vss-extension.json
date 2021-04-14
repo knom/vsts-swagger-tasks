@@ -12,10 +12,11 @@
     "large": "images/logo_large.png"
   },
   "categories": [
-    "Build and release"
+    "Azure Pipelines"
   ],
   "tags": [
     "Swagger",
+    "OpenAPI",
     "Build",
     "Release",
     "Compare",

@@ -10,7 +10,10 @@
   "main": "",
   "keywords": [],
   "dependencies": {
-    "swagger-diff": "^0.6.0",
-    "vsts-task-lib": "^0.8.2"
+    "azure-pipelines-task-lib": "^3.1.0",
+    "growl": ">=1.10.5",
+    "lodash": ">=4.17.21",
+    "node-fetch": "^2.6.1",
+    "swagger-diff": "^0.6.0"
   }
 }
