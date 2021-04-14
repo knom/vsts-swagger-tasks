@@ -133,6 +133,7 @@ gulp.task(
       .src(
         [
           "./src/vss-extension.json",
+          "./src/docs/*",
           "./src/images/*",
           "./src/swagger-diff/**/*.js",
           "./src/swagger-diff/package.json",
