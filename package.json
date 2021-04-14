@@ -28,6 +28,6 @@
     "merge-stream": "^2.0.0"
   },
   "scripts": {
-    "postinstall": "cd src/swagger-diff && npm install"
+    "postinstall": "cd src && cd swagger-diff && npm install"
   }
 }
