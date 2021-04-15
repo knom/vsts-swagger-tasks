@@ -11,8 +11,12 @@
   "keywords": [],
   "dependencies": {
     "azure-pipelines-task-lib": "^3.1.0",
-    "growl": ">=1.10.5",
-    "lodash": ">=4.17.21",
+    "extend": "^3.0.2",
+    "growl": "^1.10.5",
+    "js-yaml": "^3.13.1",
+    "lodash": "^4.17.21",
+    "lodash.defaultsdeep": "^4.6.1",
+    "lodash.merge": "^4.6.2",
     "node-fetch": "^2.6.1",
     "openapi-diff": "^0.23.4",
     "swagger-diff": "^0.6.0"

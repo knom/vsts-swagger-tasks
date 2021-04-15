@@ -23,8 +23,8 @@
     "shelljs": "^0.8.4"
   },
   "dependencies": {
-    "growl": ">=1.10.5",
-    "lodash": ">=4.17.21",
+    "growl": "^1.10.5",
+    "lodash": "^4.17.21",
     "merge-stream": "^2.0.0"
   },
   "scripts": {}
