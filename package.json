@@ -16,6 +16,7 @@
     "eslint-plugin-react": "^7.23.2",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
+    "gulp-install": "^1.1.0",
     "gulp-istanbul": "^1.1.3",
     "gulp-mocha": "^8.0.0",
     "gulp-plumber": "^1.2.1",

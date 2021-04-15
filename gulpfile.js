@@ -11,8 +11,9 @@ var plumber = require("gulp-plumber");
 var shell = require("shelljs");
 var gutil = require("gulp-util");
 var merge = require("merge-stream");
+var install = require("gulp-install");
 
-// var executeCommand = function (cmd, dir, done) {
+// var executeCommand = (cmd, dir, done) => {
 //   gutil.log("Running command: " + cmd);
 //   var pwd = shell.pwd();
 //   if (undefined !== dir) {
@@ -56,7 +57,7 @@ gulp.task("lint", function () {
   return gulp
     .src([
       "src/swagger-diff/swagger-diff-v1/task.js",
-      "src/swagger-diff/swagger-diff-v2/task.js"
+      "src/swagger-diff/swagger-diff-v2/task.js",
     ])
     .pipe(eslint())
     .pipe(eslint.format())
@@ -109,7 +110,7 @@ gulp.task("test", gulp.series(["mocha-test"]));
 
 gulp.task("default", gulp.series(["test"]));
 
-gulp.task("package:clean", function(cb){
+gulp.task("package:clean", function (cb) {
   return del(["./package/*/**"], cb);
 });
 
@@ -157,4 +158,13 @@ gulp.task(
   })
 );
 
-gulp.task("package", gulp.series("package:copy"));
+gulp.task("package:npminstall", () => {
+  return gulp
+    .src([
+      "./package/swagger-diff/swagger-diff-v1/package.json",
+      "./package/swagger-diff/swagger-diff-v2/package.json",
+    ])
+    .pipe(install({ production: true }));
+});
+
+gulp.task("package", gulp.series("package:copy", "package:npminstall"));
