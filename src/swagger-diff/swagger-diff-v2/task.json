@@ -1,9 +1,9 @@
 {
   "id": "d0b32dd5-f8bd-4118-8e66-699ad33189a2",
   "name": "swagger-diff",
-  "friendlyName": "Swagger Contract Diff",
-  "description": "A build/release task for comparing two Swagger Contracts.",
-  "helpMarkdown": "### Compare two Swagger Contracts - left-side and right-side.",
+  "friendlyName": "OpenApi Contract Diff",
+  "description": "A build/release task for comparing two OpenAPI (v3) or Swagger (v2) REST Contracts.",
+  "helpMarkdown": "### Compare two Contracts - left-side and right-side.\nContracts can be either OpenAPI (v3) or Swagger (v2).",
   "category": "Test",
   "visibility": [
     "Build",
@@ -13,7 +13,7 @@
   "version": {
     "Major": 2,
     "Minor": 0,
-    "Patch": 2
+    "Patch": 0
   },
   "demands": [
     "npm"
@@ -21,40 +21,35 @@
   "groups": [
     {
       "name": "left",
-      "displayName": "Left-Side Document",
+      "displayName": "Left-Side Contract",
       "isExpanded": true
     },
     {
       "name": "right",
-      "displayName": "Right-Side Document",
+      "displayName": "Right-Side Contract",
       "isExpanded": true
-    },
-    {
-      "name": "advanced",
-      "displayName": "Advanced",
-      "isExpanded": false
     }
   ],
   "inputs": [
     {
       "name": "swaggerVersion",
       "type": "radio",
-      "label": "Swagger Version:",
-      "defaultValue": "v2",
+      "label": "Contract Version:",
+      "defaultValue": "v3",
       "required": "true",
-      "helpMarkDown": "Which version of Swagger is being used",
+      "helpMarkDown": "Which version of contract schema is being used",
       "options": {
-        "v2": "Swagger v2",
-        "v3": "OpenAPI v3"
+        "v3": "OpenAPI (v3)",
+        "v2": "Swagger (v2)"
       }
     },
     {
       "name": "leftType",
       "type": "radio",
-      "label": "Left Document Type:",
+      "label": "Left Contract Type:",
       "defaultValue": "file",
       "required": "true",
-      "helpMarkDown": "Whether the left-side Swagger document is a file path or Url.",
+      "helpMarkDown": "Whether the left-side contract is a file path or Url.",
       "options": {
         "file": "File",
         "url": "Url"
@@ -64,30 +59,30 @@
     {
       "name": "leftFilePath",
       "type": "filePath",
-      "label": "Left Document File Path:",
+      "label": "Left Contract File Path:",
       "defaultValue": "",
       "required": "true",
-      "helpMarkDown": "The file path of the left-side Swagger document.",
+      "helpMarkDown": "The file path of the left-side contract.",
       "visibleRule": "leftType = file",
       "groupName": "left"
     },
     {
       "name": "leftUrl",
       "type": "string",
-      "label": "Left Document Url:",
+      "label": "Left Contract Url:",
       "defaultValue": "",
       "required": "true",
-      "helpMarkDown": "The URL of the left-side Swagger document.",
+      "helpMarkDown": "The URL of the left-side contract.",
       "visibleRule": "leftType = url",
       "groupName": "left"
     },
     {
       "name": "rightType",
       "type": "radio",
-      "label": "Right Document Type:",
+      "label": "Right Contract Type:",
       "defaultValue": "file",
       "required": "true",
-      "helpMarkDown": "Whether the right-side Swagger document is a file path or Url.",
+      "helpMarkDown": "Whether the right-side contract is a file path or Url.",
       "options": {
         "file": "File",
         "url": "Url"
@@ -97,34 +92,25 @@
     {
       "name": "rightFilePath",
       "type": "filePath",
-      "label": "Right Document File Path:",
+      "label": "Right Contract File Path:",
       "defaultValue": "",
       "required": "true",
-      "helpMarkDown": "The file path of the right-side Swagger document.",
+      "helpMarkDown": "The file path of the right-side contract.",
       "visibleRule": "rightType = file",
       "groupName": "right"
     },
     {
       "name": "rightUrl",
       "type": "string",
-      "label": "Right Document Url:",
+      "label": "Right Contract Url:",
       "defaultValue": "",
       "required": "true",
-      "helpMarkDown": "The URL of the right-side Swagger document.",
+      "helpMarkDown": "The URL of the right-side contract.",
       "visibleRule": "rightType = url",
       "groupName": "right"
-    },
-    {
-      "name": "config",
-      "type": "string",
-      "label": "Swagger-Diff Configuration Override:",
-      "defaultValue": "",
-      "required": "false",
-      "helpMarkDown": "The optional JSON Configuration override for swagger-diff.",
-      "groupName": "advanced"
     }
   ],
-  "instanceNameFormat": "Swagger Contract Diff $(name)",
+  "instanceNameFormat": "OpenAPI Contract Diff $(name)",
   "execution": {
     "Node10": {
       "target": "task.js",

@@ -54,18 +54,18 @@ if (swaggerVersion == "v2") {
       });
 
       diff.warnings.forEach((value) => {
-          task.warning(
-            util.format("Rule: %s, Message %s", value.ruleId, value.message)
-          );
-          task.debug("Warning: " + JSON.stringify(value));
-        });
+        task.warning(
+          util.format("Rule: %s, Message %s", value.ruleId, value.message)
+        );
+        task.debug("Warning: " + JSON.stringify(value));
+      });
 
       diff.infos.forEach((value) => {
-          console.log(
-            util.format("Rule: %s, Message %s", value.ruleId, value.message)
-          );
-          task.debug("Warning: " + JSON.stringify(value));
-        });
+        console.log(
+          util.format("Rule: %s, Message %s", value.ruleId, value.message)
+        );
+        task.debug("Warning: " + JSON.stringify(value));
+      });
 
       // Handle result
       task.debug(JSON.stringify(diff));
@@ -124,76 +124,81 @@ if (swaggerVersion == "v2") {
 
     if (result.breakingDifferencesFound) {
       result.breakingDifferences.forEach((value) => {
-          var spec = [];
-          if (value.sourceSpecEntityDetails.length > 0)
-            spec = spec.concat(value.sourceSpecEntityDetails);
-          if (value.destinationSpecEntityDetails.length > 0)
-            spec = spec.concat(value.destinationSpecEntityDetails);
+        var spec = [];
+        if (value.sourceSpecEntityDetails.length > 0)
+          spec = spec.concat(value.sourceSpecEntityDetails);
+        if (value.destinationSpecEntityDetails.length > 0)
+          spec = spec.concat(value.destinationSpecEntityDetails);
 
-          console.log(
-            util.format(
-              "%s change - %s: %s",
-              value.type,
-              value.code,
-              spec[0].location
-            )
-          );
-          task.error(
-            util.format(
-              "%s change - %s: %s",
-              value.type,
-              value.code,
-              spec[0].location
-            )
-          );
-          task.debug("Error: " + JSON.stringify(value));
-        });
+        // console.log(
+        //   util.format(
+        //     "[%s change] Rule: %s, Path %s: %s",
+        //     value.type,
+        //     value.code,
+        //     spec[0].location,
+        //     value.action
+        //   )
+        // );
+        task.error(
+          util.format(
+            "[%s change] Rule: %s, Path %s %s",
+            value.type,
+            value.code,
+            value.action,
+            spec[0].location
+          )
+        );
+        task.debug("Error: " + JSON.stringify(value));
+      });
     }
 
     result.nonBreakingDifferences.forEach((value) => {
-        var spec = [];
-        if (value.sourceSpecEntityDetails.length > 0)
-          spec = spec.concat(value.sourceSpecEntityDetails);
-        if (value.destinationSpecEntityDetails.length > 0)
-          spec = spec.concat(value.destinationSpecEntityDetails);
+      var spec = [];
+      if (value.sourceSpecEntityDetails.length > 0)
+        spec = spec.concat(value.sourceSpecEntityDetails);
+      if (value.destinationSpecEntityDetails.length > 0)
+        spec = spec.concat(value.destinationSpecEntityDetails);
 
-        console.log(
-          util.format(
-            "%s change - %s: %s",
-            value.type,
-            value.code,
-            spec[0].location
-          )
-        );
-        task.warning(
-          util.format(
-            "%s change - %s: %s",
-            value.type,
-            value.code,
-            spec[0].location
-          )
-        );
-        task.debug("Warning: " + JSON.stringify(value));
-      });
+      // console.log(
+      //   util.format(
+      //     "[%s change] Rule: %s, Path %s: %s",
+      //     value.type,
+      //     value.code,
+      //     spec[0].location,
+      //     value.action
+      //   )
+      // );
+      task.warning(
+        util.format(
+          "[%s change] Rule: %s, Path %s %s",
+          value.type,
+          value.code,
+          value.action,
+          spec[0].location
+        )
+      );
+      task.debug("Warning: " + JSON.stringify(value));
+    });
 
     result.unclassifiedDifferences.forEach((value) => {
-        var spec = [];
-        if (value.sourceSpecEntityDetails.length > 0)
-          spec = spec.concat(value.sourceSpecEntityDetails);
-        if (value.destinationSpecEntityDetails.length > 0)
-          spec = spec.concat(value.destinationSpecEntityDetails);
+      var spec = [];
+      if (value.sourceSpecEntityDetails.length > 0)
+        spec = spec.concat(value.sourceSpecEntityDetails);
+      if (value.destinationSpecEntityDetails.length > 0)
+        spec = spec.concat(value.destinationSpecEntityDetails);
 
-        console.log(
-          util.format(
-            "%s change - %s: %s",
-            value.type,
-            value.code,
-            spec[0].location
-          )
-        );
+      console.log(
+        util.format(
+          "[%s change] Rule: %s, Path %s %s",
+          value.type,
+          value.code,
+          value.action,
+          spec[0].location
+        )
+      );
 
-        task.debug("Warning: " + JSON.stringify(value));
-      });
+      task.debug("Unclassified: " + JSON.stringify(value));
+    });
 
     // Handle result
     task.debug(JSON.stringify(result));
@@ -202,18 +207,25 @@ if (swaggerVersion == "v2") {
       task.setResult(
         task.TaskResult.Failed,
         util.format(
-          "%s breaking differences found",
+          "There were %s breaking differences found",
           result.breakingDifferences.length
         )
       );
     } else {
-      task.setResult(task.TaskResult.Succeeded, "0 Breaking differences found");
+      task.setResult(
+        task.TaskResult.Succeeded,
+        "There were 0 breaking differences found"
+      );
     }
   })().catch((e) => {
+    if (e.code && e.code === "OPENAPI_DIFF_PARSE_ERROR") {
+      task.error("Error parsing OpenAPI file: " + e.message);
+    } else {
       task.error("An error occurred calling openapi-diff" + JSON.stringify(e));
-      task.setResult(
-        task.TaskResult.Failed,
-        "An error occurred calling openapi-diff!"
-      );
-    });
+    }
+    task.setResult(
+      task.TaskResult.Failed,
+      "An error occurred calling openapi-diff!"
+    );
+  });
 }

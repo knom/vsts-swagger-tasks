@@ -12,8 +12,8 @@
   "author": "knom",
   "version": {
     "Major": 1,
-    "Minor": 0,
-    "Patch": 2
+    "Minor": 2,
+    "Patch": 7
   },
   "demands": [
     "npm"
@@ -36,18 +36,6 @@
     }
   ],
   "inputs": [
-    {
-      "name": "swaggerVersion",
-      "type": "radio",
-      "label": "Swagger Version:",
-      "defaultValue": "v2",
-      "required": "true",
-      "helpMarkDown": "Which version of Swagger is being used",
-      "options": {
-        "v2": "Swagger v2",
-        "v3": "OpenAPI v3"
-      }
-    },
     {
       "name": "leftType",
       "type": "radio",
