@@ -9,10 +9,11 @@
         "name": "Launch Program",
         "program": "${workspaceFolder}/src/swagger-diff/task.js",
         "env": {
+            "INPUT_swaggerVersion": "v3",
             "INPUT_leftType": "url",
-            "INPUT_leftUrl": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/json/petstore-minimal.json",
-            "INPUT_rightType": "url",
-            "INPUT_rightUrl": "https://raw.githubusercontent.com/swagger-api/swagger-codegen/master/modules/swagger-codegen/src/test/resources/2_0/petstore.json"
+            "INPUT_leftUrl": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore-expanded.json",
+            "INPUT_rightType": "file",
+            "INPUT_rightFilePath": "./petstore-expanded.json",
         }
     }]
 }
