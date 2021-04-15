@@ -54,7 +54,10 @@ var merge = require("merge-stream");
 // Tasks
 gulp.task("lint", function () {
   return gulp
-    .src("src/swagger-diff/task.js")
+    .src([
+      "src/swagger-diff/swagger-diff-v1/task.js",
+      "src/swagger-diff/swagger-diff-v2/task.js"
+    ])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
@@ -134,10 +137,16 @@ gulp.task(
           "./src/vss-extension.json",
           "./src/docs/*",
           "./src/images/*",
-          "./src/swagger-diff/**/*.js",
-          "./src/swagger-diff/package.json",
-          "./src/swagger-diff/task.json",
-          "./src/swagger-diff/icon.png",
+          "./src/swagger-diff/swagger-diff-v1/**/*.js",
+          "./src/swagger-diff/swagger-diff-v1/package.json",
+          "./src/swagger-diff/swagger-diff-v1/task.json",
+          "./src/swagger-diff/swagger-diff-v1/icon.png",
+
+          "./src/swagger-diff/swagger-diff-v2/**/*.js",
+          "./src/swagger-diff/swagger-diff-v2/package.json",
+          "./src/swagger-diff/swagger-diff-v2/task.json",
+          "./src/swagger-diff/swagger-diff-v2/icon.png",
+
           "!**/node_modules/**/*",
         ],
         { base: "./src/" }
