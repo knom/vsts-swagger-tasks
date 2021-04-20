@@ -1,10 +1,10 @@
 {
   "manifestVersion": 1,
   "extensionId": "vsts-swagger-diff",
-  "name": "Swagger Contract Diff",
+  "name": "OpenAPI Contract Diff",
   "version": "1.2.2",
   "publisher": "knom",
-  "description": "A build/release task for comparing Swagger Contracts.",
+  "description": "A build/release task for comparing OpenAPI Contracts.",
   "public": true,
   "galleryFlags": [],
   "icons": {
@@ -30,6 +30,15 @@
     },
     "issues": {
       "uri": "https://github.com/knom/vsts-swagger-tasks/issues"
+    },
+    "support": {
+      "uri": "https://github.com/knom/vsts-swagger-tasks/issues"
+    },
+    "privacypolicy": {
+      "uri": "https://github.com/knom/vsts-swagger-tasks/blob/master/PRIVACY.md"
+    },
+    "getstarted": {
+      "uri": "https://github.com/knom/vsts-swagger-tasks/"
     },
     "repository": {
       "uri": "https://github.com/knom/vsts-swagger-tasks/"

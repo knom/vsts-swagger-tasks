@@ -121,7 +121,8 @@ gulp.task(
       .src(
         [
           "./extension-icon*.png",
-          "LICENSE",
+          "LICENSE.md",
+          "PRIVACY.md",
           "README.md",
           "package.json",
           "docs/**/*",
