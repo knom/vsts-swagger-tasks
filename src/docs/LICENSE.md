@@ -1,4 +1,4 @@
-# VSTS Swagger Diff Build/RM Tasks
+# OpenAPI Contract Diff
 
 Copyright (c) 2021 knom
 

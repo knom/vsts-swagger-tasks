@@ -27,13 +27,13 @@ Add left- and right-side contract, which can be
 * a file on the build agent
 * a publicly accessible URL
 
-![Usage](src/docs/task.png)
+![Usage](docs/task.png)
 
 ## Output
 ### Sample output of diff-comparison of two **OpenAPI v3 contracts**
-![Result1](src/docs/result1.png)
+![Result1](docs/result1.png)
 
 > Note: Right now OpenAPI DIFF is way less detailed than Swagger one is. This is back to the output of the underlying libraries.
 
 ### Sample output of diff-comparison of two **Swagger v2 contracts**
-![Result2](src/docs/result2.png)
+![Result2](docs/result2.png)

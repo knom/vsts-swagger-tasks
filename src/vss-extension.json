@@ -52,7 +52,8 @@
     "color": "#777",
     "theme": "dark"
   },
-  "screenshots": [{
+  "screenshots": [
+    {
       "path": "docs/task.png"
     },
     {
@@ -64,28 +65,40 @@
   ],
   "content": {
     "details": {
-      "path": "README.md"
+      "path": "docs/OVERVIEW.md"
+    },
+    "license": {
+      "path": "docs/LICENSE.md"
     }
   },
-  "files": [{
+  "files": [
+    {
       "path": "images",
+      "addressable": true
+    },
+    {
+      "path": "docs",
       "addressable": true
     },
     {
       "path": "swagger-diff"
     }
   ],
-  "targets": [{
-    "id": "Microsoft.VisualStudio.Services"
-  }],
-  "contributions": [{
-    "id": "swagger-diff",
-    "type": "ms.vss-distributed-task.task",
-    "targets": [
-      "ms.vss-distributed-task.tasks"
-    ],
-    "properties": {
-      "name": "swagger-diff"
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
     }
-  }]
+  ],
+  "contributions": [
+    {
+      "id": "swagger-diff",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "swagger-diff"
+      }
+    }
+  ]
 }
