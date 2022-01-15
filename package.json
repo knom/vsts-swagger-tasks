@@ -21,7 +21,7 @@
     "gulp-mocha": "^8.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-util": "^3.0.8",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.5"
   },
   "dependencies": {
     "growl": "^1.10.5",
